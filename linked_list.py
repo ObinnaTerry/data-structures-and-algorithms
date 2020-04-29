@@ -8,6 +8,18 @@ class LinkedList:
                 node.next = Node(data=elem)
                 node = node.next
 
+    def __len__(self):
+        node = self.head
+        count = 0
+        if node is None:
+            return 0
+        while node is not None:
+            count += 1
+            node = node.next
+        return count
+
+    
+
     def __repr__(self):
         node = self.head
         node_list = []
@@ -28,5 +40,5 @@ class Node:
         return self.data
 
 
-llist = LinkedList(['a', 'b', 'c'])
-print(llist)
+llist = LinkedList(['a', 'b', 'c', 'd'])
+print(len(llist))
