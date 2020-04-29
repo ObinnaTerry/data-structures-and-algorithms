@@ -12,7 +12,16 @@ class LinkedList:
         node.next = self.head
         self.head = node
 
-
+    def insert_tail(self, node):
+        node_ = self.head
+        if not node_:
+            self.head = node
+            return
+        while True:
+            if node_.next is None:
+                node_.next = node
+                break
+            node_ = node_.next
 
     def __len__(self):
         node = self.head
