@@ -1,12 +1,29 @@
 class LinkedList:
     def __init__(self, nodes=None):
         self.head = None
-        if nodes is not None:
+        if nodes is not None and len(nodes) != 0:
             node = Node(data=nodes.pop(0))
             self.head = node
             for elem in nodes:
                 node.next = Node(data=elem)
                 node = node.next
+
+    def insert_head(self, node):
+        node.next = self.head
+        self.head = node
+
+    def insert_tail(self, node):
+        node_ = self.head
+        if not node_:
+            self.head = node
+            return
+
+        while True:
+            if node_.next is None:
+                node_.next = node
+                break
+            else:
+                node_ = node_.next
 
     def __len__(self):
         node = self.head
@@ -18,17 +35,24 @@ class LinkedList:
             node = node.next
         return count
 
-    
+    def __iter__(self):
+        node = self.head
+        while node is not None:
+            yield node
+            node = node.next
 
     def __repr__(self):
         node = self.head
         node_list = []
         if node is None:
             return str(None)
-        while node is not None:
-            node_list.append(node.data)
-            node = node.next
+        for i in self:
+            node_list.append(i)
         return str(node_list)
+        # while node is not None:
+        #     node_list.append(node.data)
+        #     node = node.next
+        # return str(node_list)
 
 
 class Node:
@@ -40,5 +64,14 @@ class Node:
         return self.data
 
 
-llist = LinkedList(['a', 'b', 'c', 'd'])
-print(len(llist))
+# one = Node('a')
+# two = Node('b')
+# three = Node('c')
+# one.next = two
+# two.next = three
+# llist = LinkedList()
+# llist.head = one
+llist = LinkedList(['a', 'b', 'c'])
+n = Node('d')
+llist.insert_tail(n)
+print(llist)
