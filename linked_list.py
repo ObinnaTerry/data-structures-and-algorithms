@@ -8,6 +8,10 @@ class LinkedList:
                 node.next = Node(data=elem)
                 node = node.next
 
+    def insert_head(self, node):
+        node.next = self.head
+        self.head = node
+
 
 
     def __len__(self):
