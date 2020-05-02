@@ -31,6 +31,18 @@ class LinkedList:
                 break
             node_ = node_.next
 
+    def insert_after(self, target_node, new_node):
+        if not self.head:
+            raise Exception('List is empty')
+        for node in self:
+            if node.data == target_node:
+                next_node = node.next
+                node.next = new_node
+                new_node.next = next_node
+                self.count['len'] += 1
+                return
+        raise Exception('target node can not be found')
+
     def __len__(self):
         return self.count['len']
 
@@ -72,9 +84,10 @@ class Node:
 # llist.head = one
 llist = LinkedList(['a', 'b', 'c'])
 n = Node('d')
-llist.insert_tail(n)
+llist.insert_after('a', n)
 print(llist)
 print(len(llist))
+
 # def mergeSort(arr):
 #     if len(arr) > 1:
 #         mid = len(arr) // 2  # Finding the mid of the array
