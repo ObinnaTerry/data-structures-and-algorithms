@@ -16,7 +16,7 @@ class LinkedList:
     def insert_head(self, node):
         node.next = self.head
         self.head = node
-        self.count += 1
+        self.count['len'] += 1
 
     def insert_tail(self, node):
         node_ = self.head
@@ -41,7 +41,24 @@ class LinkedList:
                 new_node.next = next_node
                 self.count['len'] += 1
                 return
-        raise Exception('target node can not be found')
+        raise Exception('Target node can not be found')
+
+    def insert_before(self, target_node, new_node):
+        if not self.head:
+            raise Exception('List is empty')
+        if self.head == target_node:
+            # self.count['len'] += 1
+            return self.insert_head(new_node)
+
+        prev_node = self.head
+        for node in self:
+            if node.data == target_node:
+                prev_node.next = new_node
+                new_node.next = node
+                self.count['len'] += 1
+                return
+            prev_node = node
+        raise Exception('Target node can not be found')
 
     def __len__(self):
         return self.count['len']
@@ -84,7 +101,7 @@ class Node:
 # llist.head = one
 llist = LinkedList(['a', 'b', 'c'])
 n = Node('d')
-llist.insert_after('a', n)
+llist.insert_before('c', n)
 print(llist)
 print(len(llist))
 
