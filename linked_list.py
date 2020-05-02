@@ -46,8 +46,7 @@ class LinkedList:
     def insert_before(self, target_node, new_node):
         if not self.head:
             raise Exception('List is empty')
-        if self.head == target_node:
-            # self.count['len'] += 1
+        if self.head.data == target_node:
             return self.insert_head(new_node)
 
         prev_node = self.head
@@ -56,6 +55,22 @@ class LinkedList:
                 prev_node.next = new_node
                 new_node.next = node
                 self.count['len'] += 1
+                return
+            prev_node = node
+        raise Exception('Target node can not be found')
+
+    def remove_node(self, target_node):
+        if not self.head:
+            raise Exception('Cant remove from an empty list')
+        if self.head.data == target_node:
+            self.head = self.head.next
+            return
+
+        prev_node = self.head
+        for node in self:
+            if node.data == target_node:
+                prev_node.next = node.next
+                self.count['len'] -= 1
                 return
             prev_node = node
         raise Exception('Target node can not be found')
@@ -100,8 +115,8 @@ class Node:
 # llist = LinkedList()
 # llist.head = one
 llist = LinkedList(['a', 'b', 'c'])
-n = Node('d')
-llist.insert_before('c', n)
+# n = Node('d')
+llist.remove_node('b')
 print(llist)
 print(len(llist))
 
