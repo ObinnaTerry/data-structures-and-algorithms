@@ -1,3 +1,12 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+    def __repr__(self):
+        return self.data
+
+
 class LinkedList:
     def __init__(self, nodes=None):
         self.head = None
@@ -97,14 +106,6 @@ class LinkedList:
         #     node = node.next
         # return str(node_list)
 
-
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-
-    def __repr__(self):
-        return self.data
 
 
 # one = Node('a')
