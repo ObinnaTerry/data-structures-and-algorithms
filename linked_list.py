@@ -84,6 +84,19 @@ class LinkedList:
             prev_node = node
         raise Exception('Target node can not be found')
 
+    def reverse_list(self):
+        current_node = self.head
+        prev_node = None
+
+        if self.count['len'] < 2:
+            raise Exception("Cant reverse a list of length < 2")
+        while current_node is not None:
+            next_node = current_node.next
+            current_node.next = prev_node
+            prev_node = current_node
+            current_node = next_node
+        self.head = prev_node
+
     def __len__(self):
         return self.count['len']
 
@@ -116,6 +129,7 @@ class LinkedList:
 # llist.head = one
 llist = LinkedList(['a', 'b', 'c'])
 # n = Node('d')
-llist.remove_node('b')
+# llist.remove_node('b')
+llist.reverse_list()
 print(llist)
 print(len(llist))
