@@ -11,3 +11,10 @@ class Stack:
         self.top += 1
         self.stack[self.top] = num
         return
+
+    def pop(self):
+        if self.top == -1:
+            raise Exception("Error: Stack is empty")
+        value = self.stack[self.top]
+        self.top -= 1
+        return value
